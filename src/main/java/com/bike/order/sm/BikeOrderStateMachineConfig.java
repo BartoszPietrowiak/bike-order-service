@@ -39,7 +39,6 @@ public class BikeOrderStateMachineConfig extends StateMachineConfigurerAdapter<B
     private final Action<BikeOrderStatusEnum,BikeOrderEventEnum> allocateOrderAction;
     private final Action<BikeOrderStatusEnum,BikeOrderEventEnum> validationFailureAction;
     private final Action<BikeOrderStatusEnum,BikeOrderEventEnum> allocationFailureAction;
-    private final Action<BikeOrderStatusEnum,BikeOrderEventEnum> allocationFailureAction;
     private final Action<BikeOrderStatusEnum,BikeOrderEventEnum> deallocationAction;
 
     @Override

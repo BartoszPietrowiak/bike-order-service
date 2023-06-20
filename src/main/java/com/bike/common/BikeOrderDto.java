@@ -33,7 +33,7 @@ public class BikeOrderDto {
 
     private UUID customerId;
     private String customerRef;
-    private List<BikeOrderLineDto> bikeOrderLines;
+    private List<BikeOrderLineDto> bikeOrderLine;
     private String orderStatus;
     private String orderStatusCallbackUrl;
 }

@@ -20,17 +20,17 @@ public class BikeOrderLine extends BaseEntity {
     private BikeOrder bikeOrder;
     private UUID bikeId;
     private String upc;
-    private Integer quantity = 0;
+    private Integer orderQuantity = 0;
     private Integer allocatedQuantity = 0;
 
     @Builder
     public BikeOrderLine(UUID id, Long version, Timestamp createdDate, Timestamp lastModifiedDate,
-                         BikeOrder bikeOrder, UUID bikeId, String upc, Integer quantity,
+                         BikeOrder bikeOrder, UUID bikeId, String upc, Integer orderQuantity,
                          Integer allocatedQuantity) {
         super(id, version, createdDate, lastModifiedDate);
         this.bikeOrder = bikeOrder;
         this.bikeId = bikeId;
-        this.quantity = quantity;
+        this.orderQuantity = orderQuantity;
         this.allocatedQuantity = allocatedQuantity;
         this.upc = upc;
     }

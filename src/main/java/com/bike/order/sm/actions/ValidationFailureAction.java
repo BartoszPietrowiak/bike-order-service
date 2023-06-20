@@ -22,7 +22,7 @@ public class ValidationFailureAction implements Action<BikeOrderStatusEnum, Bike
 
     @Override
     public void execute(StateContext<BikeOrderStatusEnum, BikeOrderEventEnum> stateContext) {
-        String bikeOrderId = (String) stateContext.getMessage().getHeaders().get(BikeOrderManagerImpl.BEER_ORDER_HEADER_ID);
+        String bikeOrderId = (String) stateContext.getMessage().getHeaders().get(BikeOrderManagerImpl.BIKE_ORDER_HEADER_ID);
         log.error("Compoensating Transaction... Validation Failed:" + bikeOrderId);
     }
 }

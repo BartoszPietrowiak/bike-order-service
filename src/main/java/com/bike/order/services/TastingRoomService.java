@@ -62,13 +62,13 @@ public class TastingRoomService {
         List<BikeOrderLineDto> bikeOrderLineSet = new ArrayList<>();
         bikeOrderLineSet.add(bikeOrderLine);
 
-        BikeOrderDto beerOrder = BikeOrderDto.builder()
+        BikeOrderDto bikeOrder = BikeOrderDto.builder()
                 .customerId(customer.getId())
                 .customerRef(UUID.randomUUID().toString())
-                .bikeOrderLines(bikeOrderLineSet)
+                .bikeOrderLine(bikeOrderLineSet)
                 .build();
 
-        BikeOrderDto savedOrder = bikeOrderService.placeOrder(customer.getId(), beerOrder);
+        BikeOrderDto savedOrder = bikeOrderService.placeOrder(customer.getId(), bikeOrder);
 
     }
 

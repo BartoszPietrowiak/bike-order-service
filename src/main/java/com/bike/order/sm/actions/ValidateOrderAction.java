@@ -40,7 +40,7 @@ public class ValidateOrderAction implements Action<BikeOrderStatusEnum, BikeOrde
                 .bikeOrderDto(bikeOrderMapper.bikeOrderToDto(bikeOrder))
                 .build());
 
-        log.debug("Sent validation request to queue for order id " + bikeOrder.getId());
+        log.info("Sent validation request to queue for order id " + bikeOrder.getId());
 
     }
 }

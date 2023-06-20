@@ -20,7 +20,6 @@ public abstract class BikeOrderLineMapperDecorator implements BikeOrderLineMappe
     }
 
     @Autowired
-    @Qualifier("delegate")
     public void setBikeOrderLineMapper(BikeOrderLineMapper bikeOrderLineMapper) {
         this.bikeOrderLineMapper = bikeOrderLineMapper;
     }

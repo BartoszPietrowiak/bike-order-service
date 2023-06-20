@@ -109,9 +109,9 @@ public class BikeOrderManagerImpl implements BikeOrderManager {
         Optional<BikeOrder> bikeOrderOptional = bikeOrderRepository.findById(bikeOrderDto.getId());
         bikeOrderOptional.ifPresentOrElse(allocatedOrder -> {
             allocatedOrder.getBikeOrderLine().forEach(bikeOrderLine -> {
-                bikeOrderDto.getBikeOrderLines().forEach(bikeOrderLineDto -> {
+                bikeOrderDto.getBikeOrderLine().forEach(bikeOrderLineDto -> {
                     if (bikeOrderLine.getId().equals(bikeOrderLineDto.getId())) {
-                        bikeOrderLine.setAllocatedQuantity(bikeOrderLineDto.setAllocatedQuantity());
+                        bikeOrderLine.setAllocatedQuantity(bikeOrderLineDto.getAllocatedQuantity());
                     }
                 });
             });
@@ -124,7 +124,7 @@ public class BikeOrderManagerImpl implements BikeOrderManager {
         StateMachine<BikeOrderStatusEnum, BikeOrderEventEnum> sm = build(bikeOrder);
 
         Message msg = MessageBuilder.withPayload(eventEnum)
-                .setHeader(BEER_ORDER_HEADER_ID, bikeOrder.getId().toString()).build();
+                .setHeader(BIKE_ORDER_HEADER_ID, bikeOrder.getId().toString()).build();
 
         sm.sendEvent(msg);
     }

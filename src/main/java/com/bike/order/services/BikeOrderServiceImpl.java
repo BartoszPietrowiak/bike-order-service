@@ -66,7 +66,7 @@ public class BikeOrderServiceImpl implements BikeOrderService {
             bikeOrder.getBikeOrderLine().forEach(line -> line.setBikeOrder(bikeOrder));
 
             BikeOrder savedBikeOrder = bikeOrderManager.newBikeOrder(bikeOrder);
-            log.debug("Saved Beer Order: " + bikeOrder.getId());
+            log.info("Saved Bike Order: " + bikeOrder.getId());
 
             return bikeOrderMapper.bikeOrderToDto(savedBikeOrder);
         }
