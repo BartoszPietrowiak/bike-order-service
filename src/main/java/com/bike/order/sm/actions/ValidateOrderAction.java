@@ -1,6 +1,5 @@
 package com.bike.order.sm.actions;
 
-import com.bike.common.events.DeallocateOrderRequest;
 import com.bike.common.events.ValidateOrderRequest;
 import com.bike.order.config.JmsConfig;
 import com.bike.order.domain.BikeOrder;
@@ -16,7 +15,6 @@ import org.springframework.statemachine.StateContext;
 import org.springframework.statemachine.action.Action;
 import org.springframework.stereotype.Component;
 
-import java.util.Objects;
 import java.util.UUID;
 
 @Slf4j
@@ -39,8 +37,6 @@ public class ValidateOrderAction implements Action<BikeOrderStatusEnum, BikeOrde
                 .builder()
                 .bikeOrderDto(bikeOrderMapper.bikeOrderToDto(bikeOrder))
                 .build());
-
-        log.info("Sent validation request to queue for order id " + bikeOrder.getId());
 
     }
 }

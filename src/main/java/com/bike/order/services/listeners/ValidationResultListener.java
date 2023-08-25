@@ -21,7 +21,6 @@ public class ValidationResultListener {
     public void listen(ValidateOrderResponse response) {
         final UUID bikeOrderId = response.getOrderId();
         log.debug("Validation result for Order Id: " + bikeOrderId);
-
         bikeOrderManager.processValidationResult(bikeOrderId, response.getIsValid());
     }
 

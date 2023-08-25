@@ -16,6 +16,8 @@ import org.springframework.statemachine.config.StateMachineFactory;
 import org.springframework.statemachine.support.DefaultStateMachineContext;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -38,7 +40,11 @@ public class BikeOrderManagerImpl implements BikeOrderManager {
         bikeOrder.setId(null);
         bikeOrder.setOrderStatus(BikeOrderStatusEnum.NEW);
 
-        BikeOrder savedBikeOrder = bikeOrderRepository.save(bikeOrder);
+        BikeOrder savedBikeOrder = bikeOrderRepository.saveAndFlush(bikeOrder);
+
+        log.debug("Saved bike order id: " + savedBikeOrder.getId());
+        List<BikeOrder> bikeOrderIterable = bikeOrderRepository.findAll();
+        log.debug("Repository size: " + bikeOrderIterable.size());
 
         sendBikeOrderEvent(savedBikeOrder, BikeOrderEventEnum.VALIDATE_ORDER);
         return savedBikeOrder;
@@ -47,7 +53,10 @@ public class BikeOrderManagerImpl implements BikeOrderManager {
     @Override
     @Transactional
     public void processValidationResult(UUID bikeOrderId, Boolean isValid) {
+
         Optional<BikeOrder> bikeOrderOptional = bikeOrderRepository.findById(bikeOrderId);
+        List<BikeOrder> bikeOrderIterable = bikeOrderRepository.findAll();
+        log.debug("Repository size: " + bikeOrderIterable.size());
         bikeOrderOptional.ifPresentOrElse(bikeOrder -> {
             if (isValid) {
                 sendBikeOrderEvent(bikeOrder, BikeOrderEventEnum.VALIDATION_PASS);
